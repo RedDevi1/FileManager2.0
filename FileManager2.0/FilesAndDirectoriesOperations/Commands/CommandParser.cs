@@ -5,7 +5,7 @@ namespace FilesAndDirectoriesOperations.Commands
 {
     public static class CommandParser
     {
-        public static void Parse(Models.DirectoryModel content, Models.FileModel currentFile, string userInput, string[] usrCmd, Page currentPage, ref Configuration config, ref bool exit)
+        public static void Parse(Models.DirectoryModel content, Models.FileModel currentFile, string userInput, string[] usrCmd, Page currentPage, ref Configuration config, ref CheckExit exit)
         {
             if (userInput is null)
                 throw new ArgumentNullException("Пользовательский ввод пуст", nameof(userInput));

@@ -10,7 +10,7 @@ namespace FilesAndDirectoriesOperations.Commands
     enum AllCommands {exit, pg, cd, cp, md, mf, move, dinfo, finfo, rd, rf, ren }
     public static class GetCommand
     {       
-        public static void CatchCommand(Models.DirectoryModel content, Models.FileModel currentFile, Page currentPage, ref Configuration config, ref bool exit)
+        public static void CatchCommand(Models.DirectoryModel content, Models.FileModel currentFile, Page currentPage, ref Configuration config, ref CheckExit exit)
         {
             bool rightCmd = false;
             string userInput;

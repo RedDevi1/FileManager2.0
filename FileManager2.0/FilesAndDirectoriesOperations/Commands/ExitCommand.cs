@@ -11,19 +11,19 @@ namespace FilesAndDirectoriesOperations.Commands
     {
         private Configuration config;
         private Models.DirectoryModel content;
-        private bool exit;
-        public bool Exit 
-        {
-            get => exit;
-            set => exit = value; 
-        }
-        public ExitCommand(ref Configuration config, Models.DirectoryModel content, ref bool exit)
+        private CheckExit exit;
+        //public bool Exit 
+        //{
+        //    get => exit;
+        //    set => exit = value; 
+        //}
+        public ExitCommand(ref Configuration config, Models.DirectoryModel content, ref CheckExit exit)
         {
             Name = "Exit";
             Description = "Exit of the application";
             this.config = config;
             this.content = content;
-            exit = this.exit;
+            this.exit = exit;
         }
         public override void RunCommand()
         {
@@ -40,7 +40,7 @@ namespace FilesAndDirectoriesOperations.Commands
             }
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection(config.AppSettings.SectionInformation.Name);
-            Exit = true;
+            this.exit.Exit = true;
         }
     }
 }

@@ -33,8 +33,11 @@ namespace FileManager2._0
             Page currentPage = new (currentDirectory, numOfPage);
             currentPage.Print();
             TUI.Draw(Console.BufferWidth);
-            bool exit = false;
-            while (!exit)
+            //bool exit = false;
+            CheckExit exit = new();
+            exit.Exit = false;
+            //while (!exit)
+            while (!exit.Exit)
             {
                 GetCommand.CatchCommand(currentDirectory, currentFile, currentPage, ref config, ref exit);
             }
