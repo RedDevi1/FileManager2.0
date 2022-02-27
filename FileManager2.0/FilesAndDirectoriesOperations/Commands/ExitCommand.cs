@@ -12,11 +12,6 @@ namespace FilesAndDirectoriesOperations.Commands
         private Configuration config;
         private Models.DirectoryModel content;
         private CheckExit exit;
-        //public bool Exit 
-        //{
-        //    get => exit;
-        //    set => exit = value; 
-        //}
         public ExitCommand(ref Configuration config, Models.DirectoryModel content, ref CheckExit exit)
         {
             Name = "Exit";

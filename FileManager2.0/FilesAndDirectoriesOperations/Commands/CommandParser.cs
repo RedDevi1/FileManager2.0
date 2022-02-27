@@ -5,12 +5,12 @@ namespace FilesAndDirectoriesOperations.Commands
 {
     public static class CommandParser
     {
-        public static void Parse(Models.DirectoryModel content, Models.FileModel currentFile, string userInput, string[] usrCmd, Page currentPage, ref Configuration config, ref CheckExit exit)
+        public static void Parse(ref Models.DirectoryModel content, Models.FileModel currentFile, string userInput, string[] usrCmd, Page currentPage, ref Configuration config, ref CheckExit exit)
         {
             if (userInput is null)
                 throw new ArgumentNullException("Пользовательский ввод пуст", nameof(userInput));
             var parsePath = userInput.Split('"');
-            switch (usrCmd[0])
+            switch (usrCmd[0].ToLower().Trim())
             {
                 case "exit":
                     new ExitCommand(ref config, content, ref exit).RunCommand();
@@ -37,7 +37,7 @@ namespace FilesAndDirectoriesOperations.Commands
                         Console.WriteLine("Неверно задан путь");
                         break;
                     }
-                    new ChangeDirectoryCommand(content, currentPage, parsePath[1]).RunCommand();
+                    new ChangeDirectoryCommand(ref content, currentPage, parsePath[1]).RunCommand();
                     break;
                 case "move":
                     if (parsePath.Length != 5)

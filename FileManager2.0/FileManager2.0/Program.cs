@@ -10,8 +10,6 @@ namespace FileManager2._0
 {
     public class Program
     {
-        //public static FileModel CurrentFile { get; set; }
-        //public static DirectoryModel CurrentDirectory { get; set; }
         static void Main(string[] args)
         {
             Console.Title = "ФАЙЛОВЫЙ МЕНЕДЖЕР 2.0. Автор: Дернов Никита";
@@ -33,13 +31,11 @@ namespace FileManager2._0
             Page currentPage = new (currentDirectory, numOfPage);
             currentPage.Print();
             TUI.Draw(Console.BufferWidth);
-            //bool exit = false;
             CheckExit exit = new();
             exit.Exit = false;
-            //while (!exit)
             while (!exit.Exit)
             {
-                GetCommand.CatchCommand(currentDirectory, currentFile, currentPage, ref config, ref exit);
+                GetCommand.CatchCommand(ref currentDirectory, currentFile, currentPage, ref config, ref exit);
             }
         }        
     }

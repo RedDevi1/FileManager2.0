@@ -11,11 +11,12 @@ namespace FilesAndDirectoriesOperations.Commands
         private string dirPath;
         private Models.DirectoryModel dir;
         private Page currentPage;
-        public ChangeDirectoryCommand(Models.DirectoryModel content, Page currentPage, string dirPath)
+        public ChangeDirectoryCommand(ref Models.DirectoryModel content, Page currentPage, string dirPath)
         {
             Name = "ChangeDirectory";
             Description = "Change current directory";
             this.dirPath = dirPath;
+            content = new(dirPath);
             dir = content;
             this.currentPage = currentPage;
         }
@@ -23,8 +24,7 @@ namespace FilesAndDirectoriesOperations.Commands
         {
             try
             {
-                Console.Clear();
-                dir = new(dirPath);
+                Console.Clear();              
                 currentPage = new(dir, 1);
                 currentPage.Print();
                 Window.TUI.Draw(Console.BufferWidth);

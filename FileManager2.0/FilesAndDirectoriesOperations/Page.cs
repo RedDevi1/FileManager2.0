@@ -9,18 +9,15 @@ namespace FilesAndDirectoriesOperations
 {
     public class Page
     {
-        //private IEnumerable<Models.DirectoryModel> content;
         private Models.DirectoryModel content;
         private int numOfPage;
         private int numOfStringsPerPage = 20;
-        //private int numOfAllPage;
         public int NumOfPage { get; set; }
         public int NumOfStringsPerPage => numOfStringsPerPage;
         public int NumOfAllPages
         {
             get
             {
-                //return (int)Math.Ceiling((decimal)content.Count()/ numOfStringsPerPage);
                 return (int)Math.Ceiling((decimal)content.EnumerateFileSystem().Count() / numOfStringsPerPage);
             }
         }
@@ -45,9 +42,10 @@ namespace FilesAndDirectoriesOperations
             Console.WriteLine();
             var contentForPrint = GetContentPerPage();
             for (var i = 0; i < contentForPrint.Length; i++)
-                Console.WriteLine(contentForPrint[i]);
+                Console.WriteLine("\t{0}",contentForPrint[i]);
+            //Console.SetCursorPosition(0, 24);
             Console.WriteLine();
-            Console.WriteLine("======= Номер страницы: {0} =======", this.numOfPage);
+            Console.WriteLine("======= Номер страницы: {0} ==================================", this.numOfPage);
             Console.WriteLine();
             Window.TUI.MenuHelp();
         }

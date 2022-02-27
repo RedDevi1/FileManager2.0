@@ -10,7 +10,7 @@ namespace FilesAndDirectoriesOperations.Commands
     enum AllCommands {exit, pg, cd, cp, md, mf, move, dinfo, finfo, rd, rf, ren }
     public static class GetCommand
     {       
-        public static void CatchCommand(Models.DirectoryModel content, Models.FileModel currentFile, Page currentPage, ref Configuration config, ref CheckExit exit)
+        public static void CatchCommand(ref Models.DirectoryModel content, Models.FileModel currentFile, Page currentPage, ref Configuration config, ref CheckExit exit)
         {
             bool rightCmd = false;
             string userInput;
@@ -24,7 +24,7 @@ namespace FilesAndDirectoriesOperations.Commands
                     Type commands = typeof(AllCommands);
                     foreach (var command in Enum.GetNames(commands))
                     {
-                        if (usrCmd[0] != command)
+                        if (usrCmd[0].ToLower().Trim() != command)
                             continue;
                         else
                         {
@@ -37,7 +37,7 @@ namespace FilesAndDirectoriesOperations.Commands
                 }
             }
             while (rightCmd == false);
-            CommandParser.Parse(content, currentFile, userInput, usrCmd, currentPage, ref config, ref exit);
+            CommandParser.Parse(ref content, currentFile, userInput, usrCmd, currentPage, ref config, ref exit);
         }
     }
 }
