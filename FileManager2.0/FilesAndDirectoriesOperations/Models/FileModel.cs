@@ -18,14 +18,49 @@ namespace FilesAndDirectoriesOperations.Models
         public bool Exist => _File.Exists;
         public FileAttributes Attributes
         {
-            get => _File.Attributes;
-            set => _File.Attributes = value;
+            get => File.GetAttributes(_File.FullName);
+            set => File.SetAttributes(_File.FullName, Attributes);
         }
         public string NameOfDirectory => _File.DirectoryName;
         public FileModel(string FilePath) : this(new FileInfo(FilePath))
         { }
         public FileModel(FileInfo File) => _File = File;
-
-
+        public void Create()
+        {
+            _File.Create();
+        }
+        public void MoveFile(string targetPath)
+        {
+            try
+            {
+                _File.MoveTo(targetPath);              
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Ошибка при попытке перемещения файла: {0}", e.ToString());
+            }
+        }
+        public void DeleteFile()
+        {
+            try
+            {
+                _File.Delete();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Ошибка при попытке удаления файла: {0}", e.ToString());
+            }
+        }
+        public void CopyFile(string targetPath)
+        {
+            try
+            {
+                _File.CopyTo(targetPath, true);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Ошибка при попытке скопировать файл: {0}", e.ToString());
+            }
+        }
     }
 }

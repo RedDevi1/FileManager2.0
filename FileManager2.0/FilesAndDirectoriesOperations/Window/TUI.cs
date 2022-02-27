@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FilesAndDirectoriesOperations.Window
+{
+    public class TUI
+    {
+        private static readonly Dictionary<int, string> HorizontalLine = new();
+       
+        public static void Draw (int Count)
+        {
+            Console.SetCursorPosition(0, 37);
+            if (HorizontalLine.TryGetValue(Count, out var str))
+                Console.WriteLine(str);
+            else
+            {
+                str = new string('=', Count);
+                HorizontalLine[Count] = str;
+                Console.WriteLine(str);
+            }           
+        }
+        public static void MenuHelp()
+        {
+            Console.WriteLine("\tСписок команд: exit - выход, cd - смена директории, pg - режим постраничного просмотра файлового каталога\r\n" +
+                "\t(для выхода из постраничного режима нажать Q), md - создание папки, mf - создание файла, move - перемещение файла/папки\r\n" +
+                "\tdinfo - инфо о папке, finfo - инфо о файле, rd - удаление папки, rf - удаление файла\r\n" +
+                "\tren - переименование файла/папки, cp - копирование файла/папки\r\n" +
+                "\tпосле всех команд, кроме \"pg\", \"move\", \"cp\" через пробел в кавычках указывается полный путь к файлу/папке\r\n" +
+                "\tпосле команд \"move\", \"cp\" через пробел в кавычках указывается полный путь к файлу/папке источника\r\n" +
+                "\tдалее через пробел в кавычках указывается полный путь к файлу/папке назначения");
+        }
+    }
+}
